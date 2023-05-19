@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редагування заявки</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main class="container">
+    <div class="text-center mt-5 mx-auto" style="width: 400px;">
+        <h1>Редагування заявки</h1>
+    </div>
+    <div class="row ">
+        <div th:each="el : ${applications}" class="col-md-12 mt-4">
+            <form method="post" class="form-horizontal">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <td><h6>Введіть дані про свою квартиру</h6></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><h6>Введіть дані про бажану квартиру</h6></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><b>Кількість кімнат:</b></td>
+                        <td>
+                            <input type="number" th:value="${el.rooms}" min="1" max="6"
+                                   name="rooms" placeholder="Введіть дані"
+                                   class="form-control" required>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Поверх:</b></td>
+                        <td>
+                            <select id="wantfloorlist" name="wantfloor" class="form-control" required>
+                                <option th:value="${el.wantfloor}"><span th:text="${el.wantfloor}"/></option>
+                                <option value="">-Виберіть поверх-</option>
+                                <option value="неважливий">неважливий</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="вище">вище</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Площа(м2):</b></td>
+                        <td>
+                            <input type="number" step="0.01" th:value="${el.area}"
+                                   min="15.0" name="area" placeholder="Введіть дані"
+                                   class="form-control" required>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Район:</b></td>
+                        <td>
+                            <select id="wantregionlist" name="wantregion" class="form-control" required>
+                                <option th:value="${el.wantregion}"><span th:text="${el.wantregion}"/></option>
+                                <option value="">-Виберіть поверх-</option>
+                                <option value="неважливий">неважливий</option>
+                                <option value="Франківський район">Франківський район</option>
+                                <option value="Залізничний район">Залізничний район</option>
+                                <option value="Шевченківський район">Шевченківський район</option>
+                                <option value="Личаківський район">Личаківський район</option>
+                                <option value="Галицький район">Галицький район</option>
+                                <option value="Сихівський район">Сихівський район</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Поверх:</b></td>
+                        <td>
+                            <select id="floorlist" name="floor" class="form-control" required>
+                                <option th:value="${el.floor}"><span th:text="${el.floor}"/></option>
+                                <option value="">-Виберіть поверх-</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="вище">вище</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><b>Місто:</b></td>
+                        <td>
+                            <input type="text" name="city" th:value="${el.city}"
+                                   placeholder="Введіть дані" class="form-control" value="Львів"
+                                   readonly required>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><b>Район:</b></td>
+                        <td>
+<!--                            <input list="regionlist" th:value="${el.region}" class="form-control" required>-->
+                            <select id="regionlist" name="region" class="form-control" required>
+                                <option th:value="${el.region}"><span th:text="${el.region}"/></option>
+                                <option value="">-Виберіть район-</option>
+                                <option value="Франківський район">Франківський район</option>
+                                <option value="Залізничний район">Залізничний район</option>
+                                <option value="Шевченківський район">Шевченківський район</option>
+                                <option value="Личаківський район">Личаківський район</option>
+                                <option value="Галицький район">Галицький район</option>
+                                <option value="Сихівський район">Сихівський район</option>
+                            </select>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><b>Телефон:</b></td>
+                        <td>
+                            <input type="tel" name="number" th:value="${el.number}"
+                                   minlength="13" maxlength="13" placeholder="+380"
+                                   class="form-control"
+                                   pattern="^\+380\d{9}$" required>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <button class="w-30 btn btn-lg btn-success" style="float: right;" type="submit">Зберегти зміни</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<div>
+    <footer class="py-3 bg-light navbar fixed-bottom">
+        <div class="container">
+            <span class="text-muted">Apartment exchange accounting system</span>
+        </div>
+    </footer>
+</div>
+
+<script>
+  const phoneInput = document.querySelector('input[name="number"]');
+
+  phoneInput.addEventListener('input', function(event) {
+    const phonePattern = /^\+380\d{9}$/;
+    const phoneValue = event.target.value;
+
+    if (!phonePattern.test(phoneValue)) {
+      phoneInput.setCustomValidity("Будь ласка, введіть номер телефону у форматі +380XXXXXXXXX");
+    } else {
+      phoneInput.setCustomValidity("");
+    }
+  });
+</script>
+
+</body>
+</html>

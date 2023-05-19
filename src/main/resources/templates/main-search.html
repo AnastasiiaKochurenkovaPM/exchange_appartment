@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Каталог</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="conteiner">
+    <div class="conteiner mt-5 ms-5">
+        <h1>Каталог наявних на обмін квартир</h1>
+    </div>
+</div>
+
+<main class="container">
+    <div th:each="el : ${search}">
+        <form method="post">
+            <div class="row">
+                <div class="col-3">
+                    <div class="row">
+                        <b>Поверх:</b>
+                        <div class="col-6">
+                            <select name="fromsearchfloor" class="form-control">
+                                <option th:value="${el.fromsearchfloor}"><span
+                                        th:text="${el.fromsearchfloor == 'null' ? 'Від' : el.fromsearchfloor}"/>
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="вище">вище</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select name="tosearchfloor" class="form-control">
+                                <option th:value="${el.tosearchfloor}"><span
+                                        th:text="${el.tosearchfloor == 'null' ? 'До' : el.tosearchfloor}"/></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="вище">вище</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <b>Кількість кімнат:</b>
+                    <select name="searchrooms" class="form-control">
+                        <option th:value="${el.searchrooms}"><span th:text="${el.searchrooms == 0 ? 'Всі оголошення' : el.searchrooms}"/></option>
+                        <option value="1">1 кімната</option>
+                        <option value="2">2 кімнати</option>
+                        <option value="3">3 кімнати</option>
+                        <option value="4">4 кімнати</option>
+                        <option value="5">5 кімнати</option>
+                        <option value="6">6 кімнати</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <b>Район:</b>
+                    <select id="searchregionlist" name="searchregion" class="form-control">
+                        <option th:value="${el.searchregion}"><span
+                                th:text="${el.searchregion == 'null' ? 'Всі оголошення' : el.searchregion}"/></option>
+                        <option value="Франківський район">Франківський район</option>
+                        <option value="Залізничний район">Залізничний район</option>
+                        <option value="Шевченківський район">Шевченківський район</option>
+                        <option value="Личаківський район">Личаківський район</option>
+                        <option value="Галицький район">Галицький район</option>
+                        <option value="Сихівський район">Сихівський район</option>
+                    </select>
+                </div>
+                <div class="row col-3">
+                    <div class="col-3 mt-3">
+                        <button class="btn btn-lg btn-success" type="submit">
+                            <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                 class="css-13dmvp8">
+                                <path d="M10.5 17A6.508 6.508 0 0 1 4 10.5C4 6.916 6.916 4 10.5 4S17 6.916 17 10.5 14.084 17 10.5 17zm10.229 2.315-3.56-3.56A8.452 8.452 0 0 0 19 10.5C19 5.813 15.187 2 10.5 2 5.813 2 2 5.813 2 10.5c0 4.687 3.813 8.5 8.5 8.5a8.451 8.451 0 0 0 5.254-1.831l4.197 4.195.634.636H22v-1.414l-1.271-1.271z"
+                                      fill="currentColor" fill-rule="evenodd">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div th:each="el : ${options}" class="bg-light p-5 rounded mt-4 mb-3 ">
+        <h3>Квартира - <span th:text="${el.region}"/></h3>
+        <p>Площа: <span th:text="${el.area}"/> м2</p>
+        <p>Кількість кімнат: <span th:text="${el.rooms}"/></p>
+        <p>Поверх: <span th:text="${el.floor}"/></p>
+        <p>Місто: <span th:text="${el.city}"/></p>
+        <p>т. <span th:text="${el.number}"/></p>
+    </div>
+</main>
+
+
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
